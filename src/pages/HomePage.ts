@@ -23,12 +23,12 @@ export class HomePage {
 
   async selectDepartDate(day: string) {
     await this.departBtn.click();
-    await this.page.getByRole('button', { name: `${day} September` }).click();
+    await this.page.getByRole('button', { name: `${day} November` }).click();
   }
 
   async selectReturnDate(day: string) {
     await this.returnHeader.click();
-    await this.page.getByRole('button', { name: `${day} October` }).click();
+    await this.page.getByRole('button', { name: `${day} December` }).click();
   }
 
   async clickDone() {

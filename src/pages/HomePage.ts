@@ -45,10 +45,20 @@ export class HomePage {
     await this.page.getByRole('button', { name: 'Done' }).click();
   }
 
+  // async search() {
+  //   const popupPromise = this.page.waitForEvent('popup');
+  //   await this.searchBtn.click();
+  //   const newPage = await popupPromise;
+  //   return newPage;
+  // }
+
   async search() {
-    const popupPromise = this.page.waitForEvent('popup');
-    await this.searchBtn.click();
-    const newPage = await popupPromise;
-    return newPage;
-  }
+
+    await Promise.all([
+        this.page.waitForLoadState('networkidle'),
+        this.searchBtn.click()
+    ]);
+
+    return this.page;
+}
 }

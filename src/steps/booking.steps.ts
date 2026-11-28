@@ -24,11 +24,9 @@ When('I select from {string} to {string} and dates {string} and {string}', async
 
 When('I click done and search', async function () {
   resultsPage = await homePage.search();
-  // await resultsPage.waitForTimeout(5000);
   await resultsPage.waitForLoadState('networkidle');
   await resultsPage.locator('#contractindex_0').getByRole('button', { name: 'Select' }).click();
   console.log("Flight Selected!");
-  //await resultsPage.waitForTimeout(3000);
   await resultsPage.waitForLoadState('networkidle');
 
 });

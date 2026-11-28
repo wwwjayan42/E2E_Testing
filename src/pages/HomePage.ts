@@ -16,7 +16,6 @@ export class HomePage {
   async fillToCity(city: string) {
     await this.whereToInput.click();
     await this.whereToInput.fill(city);
-    await this.page.waitForTimeout(1000);
     // Select Delhi from dropdown that appears
     await this.page.getByText('DEL - New Delhi').first().click();
   }
@@ -45,20 +44,19 @@ export class HomePage {
     await this.page.getByRole('button', { name: 'Done' }).click();
   }
 
-  // async search() {
-  //   const popupPromise = this.page.waitForEvent('popup');
-  //   await this.searchBtn.click();
-  //   const newPage = await popupPromise;
-  //   return newPage;
-  // }
-
   async search() {
+    const popupPromise = this.page.waitForEvent('popup');
+    await this.searchBtn.click();
+    const newPage = await popupPromise;
+    return newPage;
+  }
 
-    await Promise.all([
-        this.page.waitForLoadState('networkidle'),
-        this.searchBtn.click()
-    ]);
+//   async search() {
+//     await this.searchBtn.click();
 
-    return this.page;
-}
+//     await this.page.waitForLoadState('domcontentloaded');
+
+//     return this.page;
+// }
+
 }
